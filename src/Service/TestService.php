@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Client\TestClient;
+use Psr\Http\Message\UriInterface;
 
 class TestService
 {
@@ -11,17 +12,22 @@ class TestService
     /**
      * TestService constructor.
      *
-     * @param \App\Client\TestClient $client
+     * @param TestClient $client
      */
     public function __construct(TestClient $client)
     {
         $this->client = $client;
     }
 
-    public function checkThatSomethingIsOk(): string
+    /**
+     * @param string|UriInterface $uri
+     *
+     * @return string
+     */
+    public function checkThatSomethingIsOk($uri): string
     {
         // I'm making request that is not going to return HTTP 200 status code
-        $response = $this->client->get('url-to-get-some-data', ['http_errors' => false]);
+        $response = $this->client->customRequest($uri);
 
         // Do something with that response and determine if all is ok or not
 
