@@ -3,22 +3,25 @@
 namespace App\Controller;
 
 use App\Client\TestClient;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestController extends AbstractController
+class TestController
 {
     /**
      * @Route("/", name="test")
-     * @param \App\Client\TestClient $client
+     *
+     * @param TestClient      $client
+     * @param EngineInterface $templating
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(TestClient $client)
+    public function index(TestClient $client, EngineInterface $templating): Response
     {
         $response = $client->get('');
 
-        return $this->render('test/index.html.twig', [
+        return $templating->renderResponse('test/index.html.twig', [
             'controller_name' => 'TestController',
             'content' => $response->getBody(),
         ]);
