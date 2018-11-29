@@ -18,7 +18,7 @@ class TestController extends AbstractController
     {
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',
-            'content' => $service->getContents(),
+            'content' => $service->checkThatSomethingIsOk(),
         ]);
     }
 }
