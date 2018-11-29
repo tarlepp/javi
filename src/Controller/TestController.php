@@ -15,7 +15,7 @@ class TestController
      * @param TestClient      $client
      * @param EngineInterface $templating
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function index(TestClient $client, EngineInterface $templating): Response
     {
