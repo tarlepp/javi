@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wunder
- * Date: 30.11.2018
- * Time: 21:31
- */
 
 namespace App\Model;
-
 
 class Foo
 {
