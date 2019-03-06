@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Client\TestClient;
+use App\Service\TestService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -10,17 +10,15 @@ class TestController extends AbstractController
 {
     /**
      * @Route("/", name="test")
-     * @param \App\Client\TestClient $client
+     * @param \App\Service\TestService $service
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(TestClient $client)
+    public function index(TestService $service)
     {
-        $response = $client->get('');
-
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',
-            'content' => $response->getBody(),
+            'content' => $service->checkThatSomethingIsOk('some-uri'),
         ]);
     }
 }
